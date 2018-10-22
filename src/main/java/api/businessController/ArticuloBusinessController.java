@@ -35,11 +35,23 @@ public class ArticuloBusinessController {
         DaoFactory.getFactory().getArticuloDao().deleteById(id);
     }
 
-    public void createVote(String articuloId, Integer escritor)  {
+    public void createVote(String articuloId, Integer escritor) {
         Articulo articulo = DaoFactory.getFactory().getArticuloDao().read(articuloId)
                 .orElseThrow(() -> new NotFoundException("Articulo (" + articuloId + ")"));
         articulo.getEscritores().add(new Escritor(escritor, articuloId));
         DaoFactory.getFactory().getArticuloDao().save(articulo);
+    }
+
+    public Double readAverage(String articuloId) {
+        Articulo articulo = DaoFactory.getFactory().getArticuloDao().read(articuloId)
+                .orElseThrow(() -> new NotFoundException("Articulo (" + articuloId + ")"));
+        return this.average(articulo);
+    }
+
+    private Double average(Articulo articulo) {
+        return articulo.getEscritores()
+                .stream().mapToDouble(Escritor::getNumero).average()
+                .orElse(Double.NaN);
     }
 
     public void updateCategory(String articuloId, Category category) {
@@ -57,3 +69,4 @@ public class ArticuloBusinessController {
 
     }
 }
+
