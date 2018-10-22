@@ -9,9 +9,11 @@ import api.exceptions.*;
 
 
 public class ArticuloApiController {
-	public static final String Articulos = "/articulos";
+    public static final String Articulos = "/articulos";
 
     public static final String Escritores = "/escritores";
+
+    public static final String AVERAGE = "/average";
 
     public static final String CATEGORY = "/category";
 
@@ -23,6 +25,9 @@ public class ArticuloApiController {
         return this.articuloBusinessController.create(articuloDto);
     }
 
+    public List<ArticuloIdNameDto> readAll() {
+        return this.articuloBusinessController.readAll();
+    }
 
     public void createVote(String articuloId, Integer escritor) {
         this.validate(escritor, "escritor");
@@ -43,8 +48,16 @@ public class ArticuloApiController {
         }
     }
 
-	public void updateCategory(String articuloId, java.util.Locale.Category category) {
-		// TODO Auto-generated method stub
-		
-	}
+    public List<ArticuloIdNameDto> find(String query) {
+        this.validate(query, "query param q");
+        if (!"average".equals(query.split(":>=")[0])) {
+            throw new ArgumentNotValidException("query param q is incorrect, missing 'average:>='");
+        }
+        return this.articuloBusinessController.findByAverageGreaterThanEqual(Double.valueOf(query.split(":>=")[1]));
+    }
+
+    public void updateCategory(String articuloId, java.util.Locale.Category category) {
+        // TODO Auto-generated method stub
+
+    }
 }

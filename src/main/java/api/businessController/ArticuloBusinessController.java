@@ -13,8 +13,8 @@ import api.entities.Tema;
 import api.exceptions.*;
 
 public class ArticuloBusinessController {
-	
-	public String create(ArticuloDto articuloDto) {
+
+    public String create(ArticuloDto articuloDto) {
         Tema tema = null;
         if (articuloDto.getUserId() != null) {
             tema = DaoFactory.getFactory().getTemaDao().read(articuloDto.getUserId())
@@ -23,6 +23,12 @@ public class ArticuloBusinessController {
         Articulo articulo = Articulo.builder(articuloDto.getName()).tema(tema).category(articuloDto.getCategory()).build();
         DaoFactory.getFactory().getArticuloDao().save(articulo);
         return articulo.getId();
+    }
+
+    public List<ArticuloIdNameDto> readAll() {
+        return DaoFactory.getFactory().getArticuloDao().findAll()
+                .stream().map(ArticuloIdNameDto::new)
+                .collect(Collectors.toList());
     }
 
     public void createVote(String articuloId, Integer escritor) {
@@ -39,4 +45,11 @@ public class ArticuloBusinessController {
         DaoFactory.getFactory().getArticuloDao().save(articulo);
     }
 
+    public List<ArticuloIdNameDto> findByAverageGreaterThanEqual(Double value) {
+        return DaoFactory.getFactory().getArticuloDao().findByEscritoresNotEmpty().stream()
+                .filter(articulo -> this.average(articulo) >= value)
+                .map(ArticuloIdNameDto::new)
+                .collect(Collectors.toList());
+
+    }
 }
