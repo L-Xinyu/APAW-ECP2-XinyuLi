@@ -61,12 +61,11 @@ public class ArticuloBusinessController {
         DaoFactory.getFactory().getArticuloDao().save(articulo);
     }
 
-    public List<ArticuloIdNameDto> findByAverageGreaterThanEqual(Double value) {
+    public List<ArticuloIdNameDto>  findByAverageGreaterThanEqual(Double value)  {
         return DaoFactory.getFactory().getArticuloDao().findByEscritoresNotEmpty().stream()
                 .filter(articulo -> this.average(articulo) >= value)
                 .map(ArticuloIdNameDto::new)
                 .collect(Collectors.toList());
-
     }
 }
 

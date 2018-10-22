@@ -19,6 +19,8 @@ public class ArticuloApiController {
 
     public static final String CATEGORY = "/category";
 
+    public static final String SEARCH = "/search";
+
     private ArticuloBusinessController articuloBusinessController = new ArticuloBusinessController();
 
     public String create(ArticuloDto articuloDto) {
@@ -35,9 +37,9 @@ public class ArticuloApiController {
         this.articuloBusinessController.delete(id);
     }
 
-    public void createVote(String articuloId, Integer escritor) {
+    public void createVote( String articuloId, Integer escritor ) {
         this.validate(escritor, "escritor");
-        if (escritor < 0 || escritor > 10) {
+        if ( escritor < 0 || escritor > 10 ) {
             throw new ArgumentNotValidException("escritor is between 0 and 10");
         }
         this.articuloBusinessController.createVote(articuloId, escritor);
@@ -58,7 +60,7 @@ public class ArticuloApiController {
         }
     }
 
-    public List<ArticuloIdNameDto> find(String query) {
+    public List<ArticuloIdNameDto> find(String query)  {
         this.validate(query, "query param q");
         if (!"average".equals(query.split(":>=")[0])) {
             throw new ArgumentNotValidException("query param q is incorrect, missing 'average:>='");
