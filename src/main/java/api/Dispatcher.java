@@ -1,12 +1,12 @@
 package api;
 
-//import api.apiControllers.ArticuloApiController;
+import api.apiControllers.ArticuloApiController;
 import api.apiControllers.ComentarioApiController;
 import api.apiControllers.TemaApiController;
-//import api.dtos.ArticuloDto;
+import api.dtos.ArticuloDto;
 import api.dtos.ComentarioDto;
 import api.dtos.TemaDto;
-//import api.entities.Category;
+import api.entities.Category;
 import api.exceptions.*;
 
 import api.exceptions.RequestInvalidException;
@@ -24,7 +24,7 @@ public class Dispatcher {
 
     private ComentarioApiController comentarioApiController = new ComentarioApiController();
 
-//    private ArticuloApiController articuloApiController = new ArticuloApiController();
+    private ArticuloApiController articuloApiController = new ArticuloApiController();
 
     public void submit(HttpRequest request, HttpResponse response) {
         String ERROR_MESSAGE = "{'error':'%S'}";
