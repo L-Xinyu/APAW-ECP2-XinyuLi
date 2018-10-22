@@ -1,10 +1,10 @@
 package api;
 
 //import api.apiControllers.ArticuloApiController;
-//import api.apiControllers.ComentarioApiController;
+import api.apiControllers.ComentarioApiController;
 import api.apiControllers.TemaApiController;
 //import api.dtos.ArticuloDto;
-//import api.dtos.ComentarioDto;
+import api.dtos.ComentarioDto;
 import api.dtos.TemaDto;
 //import api.entities.Category;
 import api.exceptions.*;
@@ -21,9 +21,9 @@ public class Dispatcher {
 //    }
 
     private TemaApiController temaApiController = new TemaApiController();
-//
-//    private ComentarioApiController comentarioApiController = new ComentarioApiController();
-//
+
+    private ComentarioApiController comentarioApiController = new ComentarioApiController();
+
 //    private ArticuloApiController articuloApiController = new ArticuloApiController();
 
     public void submit(HttpRequest request, HttpResponse response) {
