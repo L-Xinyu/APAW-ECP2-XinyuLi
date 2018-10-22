@@ -1,13 +1,13 @@
 package api;
 
-import api.apiControllers.ArticuloApiController;
-import api.apiControllers.ComentarioApiController;
+//import api.apiControllers.ArticuloApiController;
+//import api.apiControllers.ComentarioApiController;
 import api.apiControllers.TemaApiController;
-import api.dtos.ArticuloDto;
-import api.dtos.ComentarioDto;
+//import api.dtos.ArticuloDto;
+//import api.dtos.ComentarioDto;
 import api.dtos.TemaDto;
-import api.entities.Category;
-import api.exceptions.*;
+//import api.entities.Category;
+//import api.exceptions.*;
 
 import api.exceptions.RequestInvalidException;
 import http.HttpRequest;
@@ -20,7 +20,7 @@ public class Dispatcher {
 //        DaoFactory.setFactory(new DaoMemoryFactory());
 //    }
 
-//    private TemaApiController temaApiController = new TemaApiController();
+    private TemaApiController temaApiController = new TemaApiController();
 //
 //    private ComentarioApiController comentarioApiController = new ComentarioApiController();
 //
@@ -64,19 +64,19 @@ public class Dispatcher {
         }
     }
 
-//    private void doPost(HttpRequest request, HttpResponse response) {
-//        if (request.isEqualsPath(TemaApiController.TEMAS)) {
-//            response.setBody(this.temaApiController.create((TemaDto) request.getBody()));
-//        } else if (request.isEqualsPath(ComentarioApiController.Comentarios)) {
-//            this.comentarioApiController.create((ComentarioDto) request.getBody());
-//        } else if (request.isEqualsPath(ArticuloApiController.Articulos)) {
-//            response.setBody(this.articuloApiController.create((ArticuloDto) request.getBody()));
-//        } else if (request.isEqualsPath(ArticuloApiController.Articulos + ArticuloApiController.ID_ID + ArticuloApiController.Escritores)) {
-//            this.articuloApiController.createVote(request.getPath(1), (Integer) request.getBody());
-//        } else {
-//            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
-//        }
-//    }
+    private void doPost(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath(TemaApiController.TEMAS)) {
+            response.setBody(this.temaApiController.create((TemaDto) request.getBody()));
+        } else if (request.isEqualsPath(ComentarioApiController.Comentarios)) {
+            this.comentarioApiController.create((ComentarioDto) request.getBody());
+        } else if (request.isEqualsPath(ArticuloApiController.Articulos)) {
+            response.setBody(this.articuloApiController.create((ArticuloDto) request.getBody()));
+        } else if (request.isEqualsPath(ArticuloApiController.Articulos + ArticuloApiController.ID_ID + ArticuloApiController.Escritores)) {
+            this.articuloApiController.createVote(request.getPath(1), (Integer) request.getBody());
+        } else {
+            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
+        }
+    }
 //
 //    private void doGet(HttpRequest request, HttpResponse response) {
 //        if (request.isEqualsPath(ArticuloApiController.Articulos)) {
