@@ -7,7 +7,7 @@ import api.apiControllers.TemaApiController;
 //import api.dtos.ComentarioDto;
 import api.dtos.TemaDto;
 //import api.entities.Category;
-//import api.exceptions.*;
+import api.exceptions.*;
 
 import api.exceptions.RequestInvalidException;
 import http.HttpRequest;
@@ -90,14 +90,14 @@ public class Dispatcher {
 //        }
 //    }
 //
-//    private void doPut(HttpRequest request) {
-//        if (request.isEqualsPath(TemaApiController.TEMAS + TemaApiController.ID_ID)) {
-//            this.temaApiController.update(request.getPath(1), (TemaDto) request.getBody());
-//        } else {
-//            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
-//        }
-//    }
-//
+    private void doPut(HttpRequest request) {
+        if (request.isEqualsPath(TemaApiController.TEMAS + TemaApiController.ID_ID)) {
+            this.temaApiController.update(request.getPath(1), (TemaDto) request.getBody());
+        } else {
+            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
+        }
+    }
+
     private void doPatch(HttpRequest request) {
         if (request.isEqualsPath(ArticuloApiController.Articulos + ArticuloApiController.ID_ID + ArticuloApiController.CATEGORY)) {
             this.articuloApiController.updateCategory(request.getPath(1), (Category) request.getBody());
