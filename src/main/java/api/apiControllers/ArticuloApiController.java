@@ -11,9 +11,9 @@ import api.exceptions.*;
 public class ArticuloApiController {
     public static final String Articulos = "/articulos";
 
-    public static final String Escritores = "/escritores";
+    public static final String ID_ID = "/{id}";
 
-    public static final String AVERAGE = "/average";
+    public static final String Escritores = "/escritores";
 
     public static final String CATEGORY = "/category";
 
@@ -27,6 +27,10 @@ public class ArticuloApiController {
 
     public List<ArticuloIdNameDto> readAll() {
         return this.articuloBusinessController.readAll();
+    }
+
+    public void delete(String id) {
+        this.articuloBusinessController.delete(id);
     }
 
     public void createVote(String articuloId, Integer escritor) {
