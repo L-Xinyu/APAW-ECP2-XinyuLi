@@ -77,19 +77,19 @@ public class Dispatcher {
             throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
         }
     }
-//
-//    private void doGet(HttpRequest request, HttpResponse response) {
-//        if (request.isEqualsPath(ArticuloApiController.Articulos)) {
-//            response.setBody(this.articuloApiController.readAll());
-//        } else if (request.isEqualsPath(ArticuloApiController.Articulos + ArticuloApiController.ID_ID + ArticuloApiController.AVERAGE)) {
-//            response.setBody(this.articuloApiController.readAverage(request.getPath(1)));
-//        } else if (request.isEqualsPath(ArticuloApiController.Articulos + ArticuloApiController.SEARCH)) {
-//            response.setBody(this.articuloApiController.find(request.getParams().get("q")));
-//        } else {
-//            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
-//        }
-//    }
-//
+
+    private void doGet(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath(ArticuloApiController.Articulos)) {
+            response.setBody(this.articuloApiController.readAll());
+        } else if (request.isEqualsPath(ArticuloApiController.Articulos + ArticuloApiController.ID_ID + ArticuloApiController.AVERAGE)) {
+            response.setBody(this.articuloApiController.readAverage(request.getPath(1)));
+        } else if (request.isEqualsPath(ArticuloApiController.Articulos + ArticuloApiController.SEARCH)) {
+            response.setBody(this.articuloApiController.find(request.getParams().get("q")));
+        } else {
+            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
+        }
+    }
+
     private void doPut(HttpRequest request) {
         if (request.isEqualsPath(TemaApiController.TEMAS + TemaApiController.ID_ID)) {
             this.temaApiController.update(request.getPath(1), (TemaDto) request.getBody());
