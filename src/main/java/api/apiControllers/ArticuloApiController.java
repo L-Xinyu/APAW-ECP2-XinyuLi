@@ -13,7 +13,7 @@ public class ArticuloApiController {
 
     public static final String ID_ID = "/{id}";
 
-    public static final String Escritores = "/escritores";
+    public static final String Escritores = " /escritores ";
 
     public static final String CATEGORY = "/category";
 
@@ -33,9 +33,9 @@ public class ArticuloApiController {
         this.articuloBusinessController.delete(id);
     }
 
-    public void createVote(String articuloId, Integer escritor) {
+    public void createVote(String articuloId, Integer escritor)  {
         this.validate(escritor, "escritor");
-        if (escritor < 0 || escritor > 10) {
+        if ( escritor < 0 || escritor > 10 ) {
             throw new ArgumentNotValidException("escritor is between 0 and 10");
         }
         this.articuloBusinessController.createVote(articuloId, escritor);
