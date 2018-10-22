@@ -105,13 +105,13 @@ public class Dispatcher {
             throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
         }
     }
-//
-//    private void doDelete(HttpRequest request) {
-//        if (request.isEqualsPath(ArticuloApiController.Articulos + ArticuloApiController.ID_ID)) {
-//            this.articuloApiController.delete(request.getPath(1));
-//        } else {
-//            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
-//        }
-//    }
+
+    private void doDelete(HttpRequest request) {
+        if (request.isEqualsPath(ArticuloApiController.Articulos + ArticuloApiController.ID_ID)) {
+            this.articuloApiController.delete(request.getPath(1));
+        } else {
+            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
+        }
+    }
 	
 }

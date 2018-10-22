@@ -31,6 +31,10 @@ public class ArticuloBusinessController {
                 .collect(Collectors.toList());
     }
 
+    public void delete(String id) {
+        DaoFactory.getFactory().getArticuloDao().deleteById(id);
+    }
+
     public void createVote(String articuloId, Integer escritor) {
         Articulo articulo = DaoFactory.getFactory().getArticuloDao().read(articuloId)
                 .orElseThrow(() -> new NotFoundException("Articulo (" + articuloId + ")"));
